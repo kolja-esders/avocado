@@ -23,7 +23,7 @@ export class MenuPage {
   }
 
   go() {
-    this.navCtrl.push("ConfigureMenuPage");
+    this.navCtrl.push("ConfigurateMenuPage");
   }
 
 }
