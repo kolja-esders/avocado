@@ -14,5 +14,19 @@
 
 
 <ion-content padding>
+  <h1 class="text">Hey!</h1>
 
+  <h4 class="text">Tell me how your perfect menu should look like</h4>
+  <button ion-button full (click)="startListening()">Start Listening</button>
+
+  <ion-card>
+    <ion-card-header>This is what I understood...</ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let match of matches">
+          {{ match }}
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
