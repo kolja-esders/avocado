@@ -17,8 +17,12 @@
   <h1 class="text">Hey!</h1>
 
   <h4 class="text">Tell me how your perfect menu should look like</h4>
-  <button ion-button full (click)="startListening()">Start Listening</button>
 
+  <img  src="{{currentImg}}">
+
+  <button ion-button full (click)="startListening()">Start Listening</button>
+<p></p>
+<button ion-button full (click)="stopListening()">Stop Listening</button>
   <ion-card>
     <ion-card-header>This is what I understood...</ion-card-header>
     <ion-card-content>
@@ -29,4 +33,6 @@
       </ion-list>
     </ion-card-content>
   </ion-card>
+
+
 </ion-content>

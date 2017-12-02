@@ -4,6 +4,7 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { ChangeDetectorRef } from '@angular/core';
 
 
+
 @IonicPage()
 @Component({
   selector: 'page-configurate-menu',
@@ -15,8 +16,8 @@ export class ConfigurateMenuPage {
   isDemoMode = false;
   isRecording = false;
   response = '';
-
-
+  keyword ='';
+  currentImg= '../assets/img/spaetzle.jpg';
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -36,6 +37,25 @@ export class ConfigurateMenuPage {
         this.isDemoMode = true;
       });
   }
+
+
+identifyConfigurations(text: String){
+  console.log("identify config");
+  var words = text.split(" ");
+  var individualConfig
+  console.log(words)
+
+  for (var i = 0; i < words.length; i += 1) {
+
+    if (words[i] == "avocado"){
+      individualConfig = "avocado";
+    }
+
+  }
+  console.log("individualConfig")
+  return individualConfig
+}
+
 /*
   speechInput() {
     if (this.loading) {
@@ -68,6 +88,9 @@ export class ConfigurateMenuPage {
       };
       this.speechRecognition.startListening(options).subscribe(matches => {
         this.matches = matches;
+        console.log("start listening")
+
+            //this.identifyConfigurations(this.matches[0]);
         this.cd.detectChanges();
 
       }, errors => {
@@ -76,6 +99,26 @@ export class ConfigurateMenuPage {
       });
       this.isRecording = true;
     }
+
+    stopListening() {
+        this.speechRecognition.stopListening().then(() => {
+          this.isRecording = false;
+          console.log("stop listening")
+          console.log(this.matches[0])
+          this.keyword = this.identifyConfigurations(this.matches[0])
+
+          this.changeImage(this.keyword)
+
+
+        });
+    }
+
+
+
+  changeImage(word){
+    console.log("changeImage")
+    this.currentImg = '../assets/img/spaetzle_mit_Braten.jpg';
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ConfigurateMenuPage');
