@@ -22,4 +22,8 @@ export class MenuPage {
     console.log('ionViewDidLoad MenuPage');
   }
 
+  go() {
+    this.navCtrl.push("ConfigureMenuPage");
+  }
+
 }

@@ -1,3 +1,76 @@
 page-menu {
 
+  .headerWrap {
+    display: flex;
+    align-items:center;
+  }
+
+  .profile {
+    background: red;
+    width: 75px;
+    height: 75px;
+    background-image: url('../assets/img/profile.jpg');
+    border-radius: 50%;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .heading {
+    margin-left: 16px;
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 300;
+      padding-left: 10px;
+      margin: 0;
+      padding: 0;
+    }
+    h2 {
+      font-size: 1.7rem;
+      font-weight: 300;
+      color: #aaa;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .at {
+    font-size: 4rem;
+    padding-left: 10px;
+    color: #efefef;
+    padding-right: 5px;
+  }
+
+  .main {
+    padding-top: 5px;
+  }
+
+  ion-card {
+    position: relative;
+    text-align: center;
+
+    img {
+      height: 100px;
+      object-fit: cover;
+    }
+  }
+
+  .card-title {
+    position: absolute;
+    top: 36%;
+    font-size: 2.0em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .card-subtitle {
+    font-size: 1.0em;
+    position: absolute;
+    top: 52%;
+    width: 100%;
+    color: #fff;
+  }
+
 }
