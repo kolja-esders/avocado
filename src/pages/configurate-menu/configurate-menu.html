@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>configurate-menu</ion-title>
+    <ion-title>Configure your Menu!</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -20,9 +20,24 @@
 
   <img  src="{{currentImg}}">
 
-  <button ion-button full (click)="startListening()">Start Listening</button>
-<p></p>
+<button ion-button full (click)="startListening()">Start Listening</button>
 <button ion-button full (click)="stopListening()">Stop Listening</button>
+
+<div *ngFor="let garnish of meal">
+     <p>{{garnish}}</p>
+ </div>
+
+
+
+<button ion-button block round outline class="showMeal">
+  Show Meal
+</button>
+<p></p>
+<button ion-button round outline class="speakerButton">
+  <div class="speakers"></div>
+</button>
+
+
   <ion-card>
     <ion-card-header>This is what I understood...</ion-card-header>
     <ion-card-content>
