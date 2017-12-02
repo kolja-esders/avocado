@@ -18,11 +18,12 @@ export class ConfigurateMenuPage {
   response = '';
   keyword ='';
   currentImg= '../assets/img/spaetzle.jpg';
+  meal = ["Roast beef", "Spaetzle", "Salad", "Sauce"];
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private speechRecognition: SpeechRecognition,
-   private cd: ChangeDetectorRef) {
+    private cd: ChangeDetectorRef) {
   }
 
   getPermission() {
@@ -107,7 +108,7 @@ identifyConfigurations(text: String){
           console.log(this.matches[0])
           this.keyword = this.identifyConfigurations(this.matches[0])
 
-          this.changeImage(this.keyword)
+          this.changeMeal(this.keyword)
 
 
         });
@@ -115,9 +116,10 @@ identifyConfigurations(text: String){
 
 
 
-  changeImage(word){
-    console.log("changeImage")
+  changeMeal(word){
+    console.log("changeMeal")
     this.currentImg = '../assets/img/spaetzle_mit_Braten.jpg';
+    this.meal.push(word)
   }
 
   ionViewDidLoad() {
