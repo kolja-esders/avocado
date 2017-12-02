@@ -1,3 +1,24 @@
 page-configurate-menu {
+  .speakerButton{
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    color: grey;
+    margin: 0 auto;
 
+  .speakers {
+      margin: 0 auto;
+      border-radius: 10px;
+      width: 60px;
+      height: 60px;
+      background: url('../assets/img/speakers.png');
+      background-size: cover;
+
+    }
+  }
+
+  .showMeal{
+    text-align: center;
+    margin: 0 auto;
+  }
 }
