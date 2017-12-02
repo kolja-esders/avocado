@@ -17,7 +17,7 @@ export class ConfigurateMenuPage {
   isRecording = false;
   response = '';
   keyword ='';
-  currentImg= '../assets/img/spaetzle.jpg';
+  currentImg= 'assets/img/spaetzle.jpg';
   meal = ["Roast beef", "Spaetzle", "Salad", "Sauce"];
 
   constructor(public navCtrl: NavController,
@@ -118,7 +118,7 @@ identifyConfigurations(text: String){
 
   changeMeal(word){
     console.log("changeMeal")
-    this.currentImg = '../assets/img/spaetzle_mit_Braten.jpg';
+    this.currentImg = 'assets/img/spaetzle_mit_Braten.jpg';
     this.meal.push(word)
   }
 
