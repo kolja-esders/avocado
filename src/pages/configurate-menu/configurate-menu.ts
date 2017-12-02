@@ -107,13 +107,13 @@ identifyConfigurations(text: String){
           console.log("stop listening")
           console.log(this.matches[0])
           this.keyword = this.identifyConfigurations(this.matches[0])
-
           this.changeMeal(this.keyword)
-
-
         });
     }
 
+  test(){
+    this.changeMeal("Avocado")
+  }
 
 
   changeMeal(word){

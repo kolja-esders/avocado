@@ -25,17 +25,21 @@
 
 <div *ngFor="let garnish of meal">
      <p>{{garnish}}</p>
- </div>
+</div>
 
-
+ <button ion-button round outline class="speakerButton" (click)="startListening()">
+   <div class="speakers"></div>
+ </button>
 
 <button ion-button block round outline class="showMeal">
   Show Meal
 </button>
-<p></p>
-<button ion-button round outline class="speakerButton" (click)="startListening()">
-  <div class="speakers"></div>
+
+<button ion-button block round outline class="showMeal">
+  Order
 </button>
+
+
 
 
   <ion-card>
