@@ -82,4 +82,5 @@
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.1" />
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.11" />
     <plugin name="cordova-plugin-vuforia" spec="^3.2.1" />
+    <plugin name="com.ezartech.ezar.videooverlay" spec="^1.0.3" />
 </widget>
