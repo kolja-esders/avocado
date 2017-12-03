@@ -10,6 +10,7 @@
 
 <ion-content>
 
+
   <img class="mealImg"  src="{{currentImg}}">
   <div class="priceWrap">
     <span class="price">
@@ -20,7 +21,7 @@
   <div class="sec" padding>
     <h3 class="head">Ingredients</h3>
     <span *ngFor="let garnish of meal">
-       <span class="garnish">{{garnish}}</span>
+       <span class="garnish">{{garnish.name}}</span>
     </span>
   </div>
 

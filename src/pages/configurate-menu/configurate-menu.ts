@@ -16,9 +16,10 @@ export class ConfigurateMenuPage {
   isDemoMode = false;
   isRecording = false;
   response = '';
-  keyword ='';
-  currentImg= 'assets/img/pizza.jpg';
-  meal = ["Roast beef", "Spaetzle", "Salad", "Sauce"];
+  keywords = ['Avocado', 'Salad', 'Potatos', 'Chips', 'Rucola', 'Mushrooms']
+  identifiedKeywords = [];
+  currentImg = 'assets/img/pizza.jpg';
+  meal = [{name: "Roast beef", status: "no change"}, {name: "Spaetzle", status: "no change"}, {name: "Salad", status: "no change"}, {name: "Sauce", status:"no Change"}];
   listening = false;
   wikitudePlugin;
   counter = true;
@@ -27,6 +28,7 @@ export class ConfigurateMenuPage {
     startupConfiguration = {
     "camera_position": "back"
   };
+
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -64,26 +66,25 @@ export class ConfigurateMenuPage {
   }
 
 
-  identifyConfigurations(text: String){
-    console.log("identify config");
-    var words = text.split(" ");
-    var individualConfig
-    console.log(words)
-
-    for (var i = 0; i < words.length; i += 1) {
-
-      if (words[i] == "avocado"){
-        individualConfig = "avocado";
+identifyKeywords(text: String){
+  console.log("identify config");
+  var words = text.split(" ");
+  console.log(words)
+  for (var i = 0; i < words.length; i += 1) {
+    for (var j = 0; j < this.keywords.length; j += 1){
+      if (words[i].toString().toLowerCase() == this.keywords[j].toString().toLowerCase()){
+        this.identifiedKeywords.push(this.keywords[j]);
       }
-
     }
-    console.log("individualConfig")
-    return individualConfig
+
+  }
+  console.log("individualChanges done")
   }
 
   startListening(e) {
     console.log(e);
     this.listening = true;
+
 
       let options = {
         language: 'en-US',
@@ -94,10 +95,14 @@ export class ConfigurateMenuPage {
         this.matches = matches;
         this.listening = false;
         this.cd.detectChanges();
+        console.log(this.matches)
+        console.log(this.matches[0])
+        this.identifyKeywords(this.matches[0])
+        this.changeMeal()
       }, errors => {
         console.log(errors);
-
       });
+
       this.isRecording = true;
     }
 
@@ -105,17 +110,31 @@ export class ConfigurateMenuPage {
         this.speechRecognition.stopListening().then(() => {
           this.isRecording = false;
           console.log("stop listening")
-          console.log(this.matches[0])
-          this.keyword = this.identifyConfigurations(this.matches[0])
-          this.changeMeal(this.keyword)
         });
     }
 
-
-  changeMeal(word){
+  changeMeal(){
     console.log("changeMeal")
-    this.currentImg = 'assets/img/spaetzle_mit_Braten.jpg';
-    this.meal.push(word)
+    var flag = false
+    for (var j = 0; j < this.identifiedKeywords.length; j += 1) {
+          for (var i = 0; i < this.meal.length; i += 1) {
+            if(this.meal[i].name.toString() == this.identifiedKeywords[j].toString()){
+              console.log("remove")
+              this.meal[i].status = "removed"
+            } else {
+              flag = true
+            }
+      }
+      if(flag){
+        console.log("add")
+        console.log(this.identifiedKeywords[j])
+        this.meal.push({name: this.identifiedKeywords[j], status: "added"})
+        flag = false
+      }
+   }
+
+   console.log(this.meal)
+   this.identifiedKeywords = []
   }
 
   startAR(){
@@ -160,9 +179,4 @@ if (this.counter) {
 
     this.getPermission();
   }
-
-
-
-
-
 }
