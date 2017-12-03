@@ -16,13 +16,14 @@ export class ConfigurateMenuPage {
   isDemoMode = false;
   isRecording = false;
   response = '';
-  keywords = ['Avocado', 'Salad', 'Potatos', 'Chips', 'Rucola', 'Mushrooms']
+  keywords = ['Grapes', "Apple", "Tangerine", "Banana", "Nuts", "Fruit"]
   identifiedKeywords = [];
-  currentImg = 'assets/img/pizza.jpg';
-  meal = [{name: "Roast beef", status: "no change"}, {name: "Spaetzle", status: "no change"}, {name: "Salad", status: "no change"}, {name: "Sauce", status:"no Change"}];
+  currentImg = 'assets/img/Fruechteschale.png';
+  meal = [{name: "Apple", status: "no chanchroge"}, {name: "Tangerine", status: "no change"}, {name: "Nuts", status: "no change"}];
   listening = false;
   wikitudePlugin;
   counter = true;
+  isVisited = false;
   requiredFeatures = [ "ir" ];
     arExperienceUrl = "www/assets/experience/target/index.html";
     startupConfiguration = {
@@ -75,6 +76,9 @@ identifyKeywords(text: String){
       if (words[i].toString().toLowerCase() == this.keywords[j].toString().toLowerCase()){
         this.identifiedKeywords.push(this.keywords[j]);
       }
+      // if (words[i].toString().toLowerCase() == "creeps" || "craps" || "crepes"){
+      //   this.identifiedKeywords.push("Grapes");
+      // }
     }
 
   }
@@ -92,9 +96,9 @@ identifyKeywords(text: String){
         showPartial: true // iOS only
       };
       this.speechRecognition.startListening(options).subscribe(matches => {
+        this.cd.detectChanges();
         this.matches = matches;
         this.listening = false;
-        this.cd.detectChanges();
         console.log(this.matches)
         console.log(this.matches[0])
         this.identifyKeywords(this.matches[0])
@@ -115,45 +119,53 @@ identifyKeywords(text: String){
 
   changeMeal(){
     console.log("changeMeal")
-    var flag = false
-    for (var j = 0; j < this.identifiedKeywords.length; j += 1) {
-          for (var i = 0; i < this.meal.length; i += 1) {
-            if(this.meal[i].name.toString() == this.identifiedKeywords[j].toString()){
-              console.log("remove")
-              this.meal[i].status = "removed"
-            } else {
-              flag = true
-            }
-      }
-      if(flag){
-        console.log("add")
-        console.log(this.identifiedKeywords[j])
-        this.meal.push({name: this.identifiedKeywords[j], status: "added"})
-        flag = false
-      }
-   }
 
-   console.log(this.meal)
-   this.identifiedKeywords = []
+    if(!this.isVisited){
+          this.meal.push({name: "Grapes", status: "added"})
+          this.isVisited = true
+    }
+
+
+  //   var flag = false
+  //
+  //   for (var j = 0; j < this.identifiedKeywords.length; j += 1) {
+  //         for (var i = 0; i < this.meal.length; i += 1) {
+  //           if(this.meal[i].name.toString() == this.identifiedKeywords[j].toString()){
+  //             console.log("remove")
+  //             this.meal[i].status = "removed"
+  //           } else {
+  //             flag = true
+  //           }
+  //     }
+  //     if(flag){
+  //       console.log("add")
+  //       console.log(this.identifiedKeywords[j])
+  //       this.meal.push({name: this.identifiedKeywords[j], status: "added"})
+  //       flag = false
+  //     }
+  //  }
+   //
+  //  console.log(this.meal)
+  //  this.identifiedKeywords = []
   }
 
   startAR(){
-    var config:any = {"camera_position": "back"};
-if (this.counter) {
-  this.wikitudePlugin.loadARchitectWorld(
-        function(success) {
-          console.log("ARchitect World loaded successfully.");
-        },
-        function(fail) {
-          console.log("Failed to load ARchitect World!");
-          console.log(fail)
-        },
-    "www/assets/experience/target_before/index.html",
-    ['ir'],
-    <JSON>config);
-    this.counter = false;
-} else {
-  this.wikitudePlugin.loadARchitectWorld(
+      var config:any = {"camera_position": "back"};
+  if (this.counter) {
+    this.wikitudePlugin.loadARchitectWorld(
+          function(success) {
+            console.log("ARchitect World loaded successfully.");
+          },
+          function(fail) {
+            console.log("Failed to load ARchitect World!");
+            console.log(fail)
+          },
+      "www/assets/experience/target_before/index.html",
+      ['ir'],
+      <JSON>config);
+      this.counter = false;
+  } else {
+    this.wikitudePlugin.loadARchitectWorld(
         function(success) {
           console.log("ARchitect World loaded successfully.");
         },
