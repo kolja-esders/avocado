@@ -48,7 +48,8 @@ export class ConfigurateMenuPage {
           },
           function(fail) {
             console.log("Failed to load ARchitect World!");
-          },          
+            console.log(fail)
+          },
       "www/assets/experience/target/index.html",
       ['ir'],
       <JSON>config);
