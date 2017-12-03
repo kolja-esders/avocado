@@ -22,14 +22,16 @@ export class WelcomePage {
 
   constructor(public navCtrl: NavController, public cloverService: CloverServiceProvider) {
   // constructor(public peopleService: PeopleService){
-    this.loadPeople();
+    this.loadInventory();
   }
 
-  loadPeople(){
-  this.cloverService.load()
-  .then(data => {
-    this.inventory = data;
+  loadInventory(){
+    this.cloverService.loadInventoryItems()
+    .then(data => {
+      this.inventory = data;
     });
+
+    console.log(this.inventory);
   }
 
   // var $ = require('jQuery');
