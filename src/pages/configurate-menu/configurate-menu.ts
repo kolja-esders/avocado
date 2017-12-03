@@ -21,6 +21,7 @@ export class ConfigurateMenuPage {
   meal = ["Roast beef", "Spaetzle", "Salad", "Sauce"];
   listening = false;
   wikitudePlugin;
+  counter = true;
   requiredFeatures = [ "ir" ];
     arExperienceUrl = "www/assets/experience/target/index.html";
     startupConfiguration = {
@@ -41,18 +42,8 @@ export class ConfigurateMenuPage {
 
   onDeviceSupported = () => {
     console.log('a');
-    var config:any = {"camera_position": "back"};
-    this.wikitudePlugin.loadARchitectWorld(
-          function(success) {
-            console.log("ARchitect World loaded successfully.");
-          },
-          function(fail) {
-            console.log("Failed to load ARchitect World!");
-            console.log(fail)
-          },
-      "www/assets/experience/target/index.html",
-      ['ir'],
-      <JSON>config);
+
+
   }
 
   onDeviceNotSupported = () => {
@@ -120,14 +111,43 @@ export class ConfigurateMenuPage {
         });
     }
 
-  test(){
-    this.changeMeal("Avocado")
-  }
 
   changeMeal(word){
     console.log("changeMeal")
     this.currentImg = 'assets/img/spaetzle_mit_Braten.jpg';
     this.meal.push(word)
+  }
+
+  startAR(){
+    var config:any = {"camera_position": "back"};
+if (this.counter) {
+  this.wikitudePlugin.loadARchitectWorld(
+        function(success) {
+          console.log("ARchitect World loaded successfully.");
+        },
+        function(fail) {
+          console.log("Failed to load ARchitect World!");
+          console.log(fail)
+        },
+    "www/assets/experience/target_before/index.html",
+    ['ir'],
+    <JSON>config);
+    this.counter = false;
+} else {
+  this.wikitudePlugin.loadARchitectWorld(
+        function(success) {
+          console.log("ARchitect World loaded successfully.");
+        },
+        function(fail) {
+          console.log("Failed to load ARchitect World!");
+          console.log(fail)
+        },
+    "www/assets/experience/target_after/index.html",
+    ['ir'],
+    <JSON>config);
+}
+
+
   }
 
   order() {
