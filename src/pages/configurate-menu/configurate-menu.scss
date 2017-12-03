@@ -1,5 +1,6 @@
 page-configurate-menu {
-  .speakerButton{
+
+  .speakerButton {
     width: 100px;
     height: 100px;
     text-align: center;
@@ -14,16 +15,79 @@ page-configurate-menu {
       height: 60px;
       background: url('../assets/img/speakers.png');
       background-size: cover;
-
     }
   }
 
-  .showMeal{
+  .mealImg {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .price {
+    background-image: radial-gradient(circle at top left, #f80759 40%, #f80759);
+    color: #fefefe;
+    padding: 9px 12px 9px 12px;
+    font-weight: 300;
+    font-size: 3rem;
+    border-radius: 5px;
+    margin-top: -32px;
+  }
+
+  .priceWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .showMeal {
     text-align: center;
     margin: 0 auto;
     margin-bottom: 16px;
   }
-  .order{
+
+  .order {
     margin-bottom: 16px;
+  }
+
+  .dollar {
+    padding-right: 3px;
+  }
+
+  .wrap {
+    margin-top: 16px;
+  }
+
+  .garnish {
+    display: inline;
+    padding: 7px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+
+    margin-left: 4px;
+    margin-right: 4px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  .equalBtn {
+    display: flex;
+    flex-direction: row;
+
+    button {
+      flex-grow: 1;
+      flex-basis: 0;
+    }
+  }
+
+  .paddedIcon {
+    margin-right: 8px;
+  
   }
 }
