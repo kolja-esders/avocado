@@ -1,11 +1,32 @@
-<ion-menu [content]="content">
-  <ion-content>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
-    </ion-list>
-  </ion-content>
-</ion-menu>
+<ion-header padding>
 
-<ion-nav #content [root]="rootPage"></ion-nav>
+  <div class="headerWrap">
+    <div class="profile"></div>
+      <div class="heading">
+      <h1>
+        Habba Habba
+      </h1>
+      <h2>
+        Kastanienallee 15
+      </h2>
+    </div>
+  
+  </div>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="main">
+    <ion-card (click)="go()">
+      <img src="assets/img/pizza.jpg"/>
+      <div class="card-title">Margherita</div>
+    </ion-card>
+
+    <ion-card (click)="go()">
+      <img src="assets/img/tuna.jpg"/>
+      <div class="card-title">Tuna</div>
+    </ion-card>
+  </div>
+
+</ion-content>
