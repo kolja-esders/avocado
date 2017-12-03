@@ -1,4 +1,5 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Camera } from '@ionic-native/camera';
@@ -14,6 +15,8 @@ import { Settings } from '../providers/providers';
 import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
+import { CloverServiceProvider } from '../providers/clover-service/clover-service';
+import { RemoteServiceProvider } from '../providers/remote-service/remote-service';
 
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 
@@ -44,6 +47,7 @@ export function provideSettings(storage: Storage) {
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
@@ -69,7 +73,9 @@ export function provideSettings(storage: Storage) {
     SpeechRecognition,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    CloverServiceProvider,
+    RemoteServiceProvider
   ]
 })
 export class AppModule { }

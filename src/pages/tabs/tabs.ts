@@ -10,7 +10,8 @@ import { Tab3Root } from '../pages';
 @Component({
   selector: 'page-tabs',
   templateUrl: 'tabs.html'
-})
+})  
+
 export class TabsPage {
   tab1Root: any = Tab1Root;
   tab2Root: any = Tab2Root;

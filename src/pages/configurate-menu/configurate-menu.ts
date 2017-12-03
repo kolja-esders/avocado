@@ -92,11 +92,11 @@ identifyKeywords(text: String){
 
   changeMeal(){
     console.log("changeMeal")
-    console.log(this.identifiedKeywords.length)
     var flag = false
     for (var j = 0; j < this.identifiedKeywords.length; j += 1) {
           for (var i = 0; i < this.meal.length; i += 1) {
             if(this.meal[i].name.toString() == this.identifiedKeywords[j].toString()){
+              console.log("remove")
               this.meal[i].status = "removed"
             } else {
               flag = true
