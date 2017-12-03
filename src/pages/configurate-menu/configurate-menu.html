@@ -24,7 +24,7 @@
 <button ion-button full (click)="stopListening()">Stop Listening</button>
 
 <div *ngFor="let garnish of meal">
-     <p>{{garnish}}</p>
+     <p>{{garnish.name}}</p>
 </div>
 
  <button ion-button round outline class="speakerButton" (click)="startListening()">

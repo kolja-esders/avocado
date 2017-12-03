@@ -16,9 +16,12 @@ export class ConfigurateMenuPage {
   isDemoMode = false;
   isRecording = false;
   response = '';
-  keyword ='';
-  currentImg= 'assets/img/spaetzle.jpg';
-  meal = ["Roast beef", "Spaetzle", "Salad", "Sauce"];
+  keywords = ['Avocado', 'Salad', 'Potatos', 'Chips', 'Rucola', 'Mushrooms']
+  identifiedKeywords = ['Mushrooms'];
+  currentImg= '../assets/img/spaetzle.jpg';
+  meal = [{name: "Roast beef", status: "no change"}, {name: "Spaetzle", status: "no change"}, {name: "Salad", status: "no change"}, {name: "Sauce", status:"no Change"}];
+
+
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -40,46 +43,23 @@ export class ConfigurateMenuPage {
   }
 
 
-identifyConfigurations(text: String){
+identifyKeywords(text: String){
   console.log("identify config");
   var words = text.split(" ");
-  var individualConfig
+  var individualChanges = [];
   console.log(words)
 
   for (var i = 0; i < words.length; i += 1) {
-
-    if (words[i] == "avocado"){
-      individualConfig = "avocado";
-    }
+    for (var j = 0; j < this.keywords.length; i += 1){
+      if (words[i].toLowerCase() == this.keywords[j].toLowerCase()){
+        individualChanges.push(this.keywords[j]);
+      }
+  }
 
   }
-  console.log("individualConfig")
-  return individualConfig
+  console.log("individualChanges")
+  return individualChanges
 }
-
-/*
-  speechInput() {
-    if (this.loading) {
-      return;
-    }
-    this.loading = true;
-
-    let options = {
-      showPopup: false,  // Android only
-      showPartial: true // iOS only
-    };
-    this.speechRecognition.startListening(options).subscribe(matches => {
-      this.cd.detectChanges();
-      this.matches = matches;
-      console.log(matches);
-
-    }, errors => {
-      console.log(errors);
-    });
-    this.isRecording = true;
-  }
-*/
-
 
   startListening() {
       let options = {
@@ -106,20 +86,35 @@ identifyConfigurations(text: String){
           this.isRecording = false;
           console.log("stop listening")
           console.log(this.matches[0])
-          this.keyword = this.identifyConfigurations(this.matches[0])
-          this.changeMeal(this.keyword)
+          this.identifiedKeywords = this.identifyKeywords(this.matches[0])
+          this.changeMeal()
         });
     }
 
-  test(){
-    this.changeMeal("Avocado")
-  }
-
-
-  changeMeal(word){
+  changeMeal(){
     console.log("changeMeal")
-    this.currentImg = 'assets/img/spaetzle_mit_Braten.jpg';
-    this.meal.push(word)
+    console.log(this.identifiedKeywords.length)
+    for (var j = 0; j < this.identifiedKeywords.length; j += 1) {
+      if (this.identifiedKeywords[j].toString() in this.meal){
+          for (var i = 0; i < this.meal.length; i += 1) {
+            if(this.meal[i].name == this.identifiedKeywords[j]){
+              this.meal[i].status = "removed"
+            }
+          }
+        } else {
+            console.log("add")
+            console.log(this.identifiedKeywords[j])
+            this.meal.push({name: this.identifiedKeywords[j], status: "added"})
+        }
+
+
+
+
+
+    this.currentImg = '../assets/img/spaetzle_mit_Braten.jpg';
+
+   }
+   console.log(this.meal)
   }
 
   ionViewDidLoad() {
@@ -128,9 +123,4 @@ identifyConfigurations(text: String){
 
     this.getPermission();
   }
-
-
-
-
-
 }
