@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
+import { CloverServiceProvider } from '../../providers/clover-service/clover-service';
 
 /**
  * The Welcome Page is a splash page that quickly describes the app,
@@ -7,14 +8,32 @@ import { IonicPage, NavController } from 'ionic-angular';
  * If you'd like to immediately put the user onto a login/signup page,
  * we recommend not using the Welcome page.
 */
-@IonicPage()
+@IonicPage({
+// templateUrl: 'build/pages/welcome/welcome.html',
+// providers: [CloverService]
+})
 @Component({
   selector: 'page-welcome',
   templateUrl: 'welcome.html'
 })
 export class WelcomePage {
 
-  constructor(public navCtrl: NavController) { }
+  public inventory: any;
+
+  constructor(public navCtrl: NavController, public cloverService: CloverServiceProvider) {
+  // constructor(public peopleService: PeopleService){
+    this.loadPeople();
+  }
+
+  loadPeople(){
+  this.cloverService.load()
+  .then(data => {
+    this.inventory = data;
+    });
+  }
+
+  // var $ = require('jQuery');
+
 
   login() {
     this.navCtrl.push('LoginPage');
@@ -23,4 +42,6 @@ export class WelcomePage {
   signup() {
     this.navCtrl.push('SignupPage');
   }
+
+
 }
