@@ -19,6 +19,7 @@ export class ConfigurateMenuPage {
   keyword ='';
   currentImg= 'assets/img/pizza.jpg';
   meal = ["Roast beef", "Spaetzle", "Salad", "Sauce"];
+  listening = false;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -59,6 +60,7 @@ export class ConfigurateMenuPage {
 
   startListening(e) {
     console.log(e);
+    this.listening = true;
 
       let options = {
         language: 'en-US',
@@ -67,11 +69,8 @@ export class ConfigurateMenuPage {
       };
       this.speechRecognition.startListening(options).subscribe(matches => {
         this.matches = matches;
-        console.log("start listening")
-
-            //this.identifyConfigurations(this.matches[0]);
+        this.listening = false;
         this.cd.detectChanges();
-
       }, errors => {
         console.log(errors);
 

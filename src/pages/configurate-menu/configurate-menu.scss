@@ -46,10 +46,6 @@ page-configurate-menu {
     margin-bottom: 16px;
   }
 
-  .order {
-    margin-bottom: 16px;
-  }
-
   .dollar {
     padding-right: 3px;
   }
@@ -68,6 +64,9 @@ page-configurate-menu {
     }
   }
 
+  .order {
+    font-weight: 300;
+  }
 
   .garnish {
     display: inline;
@@ -93,6 +92,9 @@ page-configurate-menu {
 
   .paddedIcon {
     margin-right: 8px;
-  
+  }
+
+  .hide {
+    display: none;
   }
 }

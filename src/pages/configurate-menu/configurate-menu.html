@@ -21,17 +21,7 @@
     <h3 class="head">Ingredients</h3>
     <span *ngFor="let garnish of meal">
        <span class="garnish">{{garnish}}</span>
-       <span class="garnish">{{garnish}}</span>
     </span>
-  </div>
-
-  <div class="sec" padding>
-    <h3 class="head">Ingredients</h3>
-    <span *ngFor="let garnish of meal">
-       <span class="garnish">{{garnish}}</span>
-       <span class="garnish">{{garnish}}</span>
-    </span>
-
   </div>
 
 </ion-content>
@@ -39,9 +29,14 @@
 <ion-footer no-border padding>
 
   <div class="equalBtn">
-    <button ion-button light color="grey" large outline (click)="startListening($event)">
-      <ion-icon class="paddedIcon" name="mic" ng-hide="showing"></ion-icon>
+    <button ion-button light color="grey" [class.hide]="listening" large outline (click)="startListening($event)">
+      <ion-icon  class="paddedIcon" name="mic" ng-hide="showing"></ion-icon>
       Adjust
+    </button>
+
+    <button ion-button light color="grey" [class.hide]="!listening" large outline (click)="startListening($event)">
+      <!--Listening...-->
+      <ion-spinner></ion-spinner>
     </button>
 
     <button ion-button color="grey" large outline (click)="startAR()">
@@ -50,8 +45,7 @@
     </button>
   </div>
 
-  <button ion-button large color="green" full (click)="order()">
-    <!--<ion-icon class="paddedIcon" name="cart"></ion-icon>-->
+  <button ion-button large class="order" color="green" full (click)="order()">
     Order now
   </button>
 
