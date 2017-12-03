@@ -20,6 +20,7 @@ export class OrderConfirmationPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrderConfirmationPage');
+    setTimeout(()=> {this.navCtrl.push('MenuPage')}, 3000)
   }
 
 }
