@@ -1,57 +1,53 @@
-<!--
-  Generated template for the ConfigurateMenuPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Configure your Meal!</ion-title>
+    <ion-title>Margherita</ion-title>
   </ion-navbar>
+
 
 </ion-header>
 
 
-<ion-content padding>
-  <h1 class="text">Hey!</h1>
-
-  <h4 class="text">Tell me how your perfect menu should look like</h4>
-
-  <img  src="{{currentImg}}">
-
-<button ion-button full (click)="startListening()">Start Listening</button>
-<button ion-button full (click)="stopListening()">Stop Listening</button>
-
-<div *ngFor="let garnish of meal">
-     <p>{{garnish.name}}</p>
-</div>
-
- <button ion-button round outline class="speakerButton" (click)="startListening()">
-   <div class="speakers"></div>
- </button>
-
-<button ion-button block round outline class="showMeal">
-  Show Meal
-</button>
-
-<button ion-button block round outline class="showMeal">
-  Order
-</button>
+<ion-content>
 
 
+  <img class="mealImg"  src="{{currentImg}}">
+  <div class="priceWrap">
+    <span class="price">
+      <span class="dollar">$</span>12.40
+    </span>
+  </div>
 
-
-  <ion-card>
-    <ion-card-header>This is what I understood...</ion-card-header>
-    <ion-card-content>
-      <ion-list>
-        <ion-item *ngFor="let match of matches">
-          {{ match }}
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
-
+  <div class="sec" padding>
+    <h3 class="head">Ingredients</h3>
+    <span *ngFor="let garnish of meal">
+       <span class="garnish">{{garnish.name}}</span>
+    </span>
+  </div>
 
 </ion-content>
+
+<ion-footer no-border padding>
+
+  <div class="equalBtn">
+    <button ion-button light color="grey" [class.hide]="listening" large outline (click)="startListening($event)">
+      <ion-icon  class="paddedIcon" name="mic" ng-hide="showing"></ion-icon>
+      Adjust
+    </button>
+
+    <button ion-button light color="grey" [class.hide]="!listening" large outline (click)="startListening($event)">
+      <!--Listening...-->
+      <ion-spinner></ion-spinner>
+    </button>
+
+    <button ion-button color="grey" large outline (click)="startAR()">
+      <ion-icon class="paddedIcon" name="eye"></ion-icon>
+      Preview
+    </button>
+  </div>
+
+  <button ion-button large class="order" color="green" full (click)="order()">
+    Order now
+  </button>
+
+</ion-footer>

@@ -17,10 +17,10 @@ export class ConfigurateMenuPage {
   isRecording = false;
   response = '';
   keywords = ['Avocado', 'Salad', 'Potatos', 'Chips', 'Rucola', 'Mushrooms']
-  identifiedKeywords = ['Mushrooms'];
-  currentImg= '../assets/img/spaetzle.jpg';
+  identifiedKeywords = [];
+  currentImg = 'assets/img/pizza.jpg';
   meal = [{name: "Roast beef", status: "no change"}, {name: "Spaetzle", status: "no change"}, {name: "Salad", status: "no change"}, {name: "Sauce", status:"no Change"}];
-
+  listening = false;
 
 
   constructor(public navCtrl: NavController,
@@ -54,14 +54,19 @@ identifyKeywords(text: String){
       if (words[i].toLowerCase() == this.keywords[j].toLowerCase()){
         individualChanges.push(this.keywords[j]);
       }
-  }
+    }
 
   }
   console.log("individualChanges")
   return individualChanges
-}
+  }
 
-  startListening() {
+
+  startListening(e) {
+    console.log(e);
+    this.listening = true;
+
+
       let options = {
         language: 'en-US',
         showPopup: false,  // Android only
@@ -69,11 +74,8 @@ identifyKeywords(text: String){
       };
       this.speechRecognition.startListening(options).subscribe(matches => {
         this.matches = matches;
-        console.log("start listening")
-
-            //this.identifyConfigurations(this.matches[0]);
+        this.listening = false;
         this.cd.detectChanges();
-
       }, errors => {
         console.log(errors);
 
@@ -107,14 +109,12 @@ identifyKeywords(text: String){
             this.meal.push({name: this.identifiedKeywords[j], status: "added"})
         }
 
-
-
-
-
-    this.currentImg = '../assets/img/spaetzle_mit_Braten.jpg';
-
    }
    console.log(this.meal)
+  }
+
+  order() {
+    this.navCtrl.push("OrderConfirmationPage");
   }
 
   ionViewDidLoad() {

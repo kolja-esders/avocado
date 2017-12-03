@@ -1,5 +1,6 @@
 page-configurate-menu {
-  .speakerButton{
+
+  .speakerButton {
     width: 100px;
     height: 100px;
     text-align: center;
@@ -14,16 +15,86 @@ page-configurate-menu {
       height: 60px;
       background: url('../assets/img/speakers.png');
       background-size: cover;
-
     }
   }
 
-  .showMeal{
+  .mealImg {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .price {
+    background-image: radial-gradient(circle at top left, #f80759 40%, #f80759);
+    color: #fefefe;
+    padding: 9px 12px 9px 12px;
+    font-weight: 300;
+    font-size: 3rem;
+    border-radius: 5px;
+    margin-top: -32px;
+  }
+
+  .priceWrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .showMeal {
     text-align: center;
     margin: 0 auto;
     margin-bottom: 16px;
   }
-  .order{
-    margin-bottom: 16px;
+
+  .dollar {
+    padding-right: 3px;
+  }
+
+  .sec {
+    padding-bottom: 8px!important;
+
+    &:first-of-type {
+      margin-top: 8px;
+    }
+
+    .head {
+      text-transform: uppercase;
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+  }
+
+  .order {
+    font-weight: 300;
+  }
+
+  .garnish {
+    display: inline;
+    padding: 7px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+
+    margin-right: 6px;
+    line-height: 38px;
+  }
+
+  .equalBtn {
+    display: flex;
+    flex-direction: row;
+
+    button {
+      color: #222;
+      flex-grow: 1;
+      flex-basis: 0;
+      font-weight: 300;
+    }
+  }
+
+  .paddedIcon {
+    margin-right: 8px;
+  }
+
+  .hide {
+    display: none;
   }
 }
