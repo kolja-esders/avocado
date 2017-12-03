@@ -57,7 +57,9 @@ export class ConfigurateMenuPage {
     return individualConfig
   }
 
-  startListening() {
+  startListening(e) {
+    console.log(e);
+
       let options = {
         language: 'en-US',
         showPopup: false,  // Android only
