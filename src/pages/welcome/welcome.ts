@@ -19,19 +19,29 @@ import { CloverServiceProvider } from '../../providers/clover-service/clover-ser
 export class WelcomePage {
 
   public inventory: any;
+  public customers: any;
+  public customer_one: any;
 
   constructor(public navCtrl: NavController, public cloverService: CloverServiceProvider) {
   // constructor(public peopleService: PeopleService){
-    this.loadInventory();
+    this.loadData();
   }
 
-  loadInventory(){
+  loadData(){
     this.cloverService.loadInventoryItems()
     .then(data => {
       this.inventory = data;
     });
+    this.cloverService.loadCustomers()
+    .then(data => {
+      this.customers = data;
+    });
+    this.cloverService.loadCustomerMetadata()
+    .then(data => {
+      this.customer_one = data;
+    });
 
-    console.log(this.inventory);
+    //console.log(this.inventory);
   }
 
   // var $ = require('jQuery');
