@@ -46,21 +46,17 @@ export class ConfigurateMenuPage {
 identifyKeywords(text: String){
   console.log("identify config");
   var words = text.split(" ");
-  var individualChanges = [];
   console.log(words)
-
   for (var i = 0; i < words.length; i += 1) {
-    for (var j = 0; j < this.keywords.length; i += 1){
-      if (words[i].toLowerCase() == this.keywords[j].toLowerCase()){
-        individualChanges.push(this.keywords[j]);
+    for (var j = 0; j < this.keywords.length; j += 1){
+      if (words[i].toString().toLowerCase() == this.keywords[j].toString().toLowerCase()){
+        this.identifiedKeywords.push(this.keywords[j]);
       }
     }
 
   }
-  console.log("individualChanges")
-  return individualChanges
+  console.log("individualChanges done")
   }
-
 
   startListening(e) {
     console.log(e);
@@ -76,10 +72,14 @@ identifyKeywords(text: String){
         this.matches = matches;
         this.listening = false;
         this.cd.detectChanges();
+        console.log(this.matches)
+        console.log(this.matches[0])
+        this.identifyKeywords(this.matches[0])
+        this.changeMeal()
       }, errors => {
         console.log(errors);
-
       });
+
       this.isRecording = true;
     }
 
@@ -87,30 +87,31 @@ identifyKeywords(text: String){
         this.speechRecognition.stopListening().then(() => {
           this.isRecording = false;
           console.log("stop listening")
-          console.log(this.matches[0])
-          this.identifiedKeywords = this.identifyKeywords(this.matches[0])
-          this.changeMeal()
         });
     }
 
   changeMeal(){
     console.log("changeMeal")
     console.log(this.identifiedKeywords.length)
+    var flag = false
     for (var j = 0; j < this.identifiedKeywords.length; j += 1) {
-      if (this.identifiedKeywords[j].toString() in this.meal){
           for (var i = 0; i < this.meal.length; i += 1) {
-            if(this.meal[i].name == this.identifiedKeywords[j]){
+            if(this.meal[i].name.toString() == this.identifiedKeywords[j].toString()){
               this.meal[i].status = "removed"
+            } else {
+              flag = true
             }
-          }
-        } else {
-            console.log("add")
-            console.log(this.identifiedKeywords[j])
-            this.meal.push({name: this.identifiedKeywords[j], status: "added"})
-        }
-
+      }
+      if(flag){
+        console.log("add")
+        console.log(this.identifiedKeywords[j])
+        this.meal.push({name: this.identifiedKeywords[j], status: "added"})
+        flag = false
+      }
    }
+
    console.log(this.meal)
+   this.identifiedKeywords = []
   }
 
   order() {
